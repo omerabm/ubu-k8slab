@@ -8,3 +8,5 @@ sed -i "/$cur_ip_addr/d" /etc/hosts
 sed -i "/$cur_host_name/d" /etc/hosts
 sed -i "/$cur_fqdn_name/d" /etc/hosts
 echo "$cur_ip_addr $cur_host_name $cur_fqdn_name" >> /etc/hosts
+echo "Done with inital host config"
+reboot
