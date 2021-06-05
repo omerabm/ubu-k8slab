@@ -20,7 +20,7 @@ if [ -s kubeadm_join_cmd.sh ]
     echo "============================================"
  else
     curl -s http://master/kubeadm_join_cmd.sh > /root/ubu-k8slab/kubeadm_join_cmd.sh
-    while ! [ -s file1 ]
+    while ! [ -s /root/ubu-k8slab/kubeadm_join_cmd.sh ]
       do
          curl -s http://master/kubeadm_join_cmd.sh > /root/ubu-k8slab/kubeadm_join_cmd.sh
          sleep 5
