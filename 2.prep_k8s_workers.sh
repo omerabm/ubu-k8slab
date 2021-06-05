@@ -13,7 +13,7 @@
  #   scp root@master:/root/kubeadm_join_cmd.sh .
  #
  #   scp -o "StrictHostKeyChecking no" root@worker1:/root/kubeadm_join_cmd.sh .
-    curl http://worker1/kubeadm_join_cmd.sh > /root/ubu-k8slab/kubeadm_join_cmd.sh
+    curl -s http://worker1/kubeadm_join_cmd.sh > /root/ubu-k8slab/kubeadm_join_cmd.sh
     chmod +x /root/ubu-k8slab/kubeadm_join_cmd.sh
     ./kubeadm_join_cmd.sh
     sleep 10
