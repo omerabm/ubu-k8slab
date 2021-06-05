@@ -36,7 +36,7 @@ curr_ip=$(ifconfig ens32 | grep netmask | cut -d' ' -f10)
 #fi
 for i in {1..40}
 do 
-  kubectl get nodes -o wide
+  kubectl get pods --all-namespaces
   sleep 8
 done
 kubectl get nodes | grep -q "NotR" && echo "Some nodes still NotReady" || echo "All Nodes Ready .. Installation finished for cluster !!"
