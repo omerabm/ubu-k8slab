@@ -16,15 +16,19 @@ curr_ip=$(ifconfig ens32 | grep netmask | cut -d' ' -f10)
     chmod +x ./kubeadm_join_cmd.sh
     
     #### ssh keygen and lighttpd install 
-    
-    ssh-keygen -f /root/.ssh/id_rsa -P ''
+  #  
+  #  ssh-keygen -f /root/.ssh/id_rsa -P ''
     apt-get install lighttpd -y
     service lighttpd start
     cat /root/.ssh/id_rsa.pub > /root/.ssh/authorized_keys
     cp /root/.ssh/authorized_keys /var/www/html/authorized_keys
+    cp /root/kubeadm_join_cmd.sh /var/www/html/kubeadm_join_cmd.sh
+    cp /root/ubu-k8slab/kubeadm_join_cmd.sh /var/www/html/kubeadm_join_cmd.sh
+    chmod +x /var/www/html/kubeadm_join_cmd.sh
     chmod -Rf 777 /var/www/html/
     ###################################
     curl -s http://master/authorized_keys > /root/.ssh/authorized_keys
 # else
 #    echo "Node not master ... skipping further actions"
 #fi
+for i in {1..30}; do kubectl get pods -o wide; sleep 5; done
