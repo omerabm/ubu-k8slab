@@ -1,7 +1,7 @@
 hs=`hostname`
 curr_ip=$(ifconfig ens32 | grep netmask | cut -d' ' -f10)
-if [ $hs = 'master' ]
- then
+#if [ $hs = 'master' ]
+# then
     echo "Current node is msater ... Performing master node-specific actions"
     kubeadm init --apiserver-advertise-address=$cur_ip --pod-network-cidr=10.244.0.0/16 > ./kubeadm_init.log
     mkdir -p $HOME/.kube
@@ -14,6 +14,6 @@ if [ $hs = 'master' ]
     kubectl get pods --all-namespaces
     cat kubeadm_init.log | grep -A1 kubeadm | grep 'join\|discovery' > ./kubeadm_join_cmd.sh
     chmod +x ./kubeadm_join_cmd.sh
- else
-    echo "Node not master ... skipping further actions"
-fi
+# else
+#    echo "Node not master ... skipping further actions"
+#fi
