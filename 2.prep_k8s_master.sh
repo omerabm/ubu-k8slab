@@ -3,7 +3,7 @@ curr_ip=$(ifconfig ens32 | grep netmask | cut -d' ' -f10)
 if [ $hs = 'master' ]
  then
     echo "Current node is mater ... Performing master node-specific actions"
-    kubeadm init --apiserver-advertise-address=$cur_ip --pod-network-cidr=192.168.60.0/24 > ./kubeadm_init.log
+    kubeadm init --apiserver-advertise-address=$cur_ip --pod-network-cidr=10.244.0.0/16 > ./kubeadm_init.log
     mkdir -p $HOME/.kube
     cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
     chown $(id -u):$(id -g) $HOME/.kube/config
