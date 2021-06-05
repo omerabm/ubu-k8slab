@@ -20,3 +20,5 @@ do
   echo "$node_ip_addr $node_host_name $node_fqdn_name" >> /etc/hosts
 done
 echo "Done with inital host config"
+chmod +x prepare.sh
+./prepare.sh
