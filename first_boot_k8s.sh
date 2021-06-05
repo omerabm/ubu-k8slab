@@ -2,7 +2,7 @@ cur_mac_addr=$(ifconfig ens32 | grep ether | cut -d' ' -f10)
 cur_ip_addr=$(cat ip_mac.txt | grep $cur_mac_addr | cut -d',' -f2)
 cur_host_name=$(cat ip_mac.txt | grep $cur_mac_addr | cut -d',' -f3)
 cur_fqdn_name=$cur_host_name'.'$(cat ip_mac.txt | grep $cur_mac_addr | cut -d',' -f4)
-sed -i "s/192.168.1.110/$cur_ip_addr/g" /etc/netplan/00-installer-config.yaml
+sed -i "s/192.168.1.109/$cur_ip_addr/g" /etc/netplan/00-installer-config.yaml
 ifconfig ens32 $cur_ip_addr
 route add default gw 192.168.1.1
 sleep 2
