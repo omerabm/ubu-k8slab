@@ -10,5 +10,13 @@ hostnamectl set-hostname $cur_fqdn_name
 sed -i "/$cur_ip_addr/d" /etc/hosts
 sed -i "/$cur_host_name/d" /etc/hosts
 sed -i "/$cur_fqdn_name/d" /etc/hosts
-echo "$cur_ip_addr $cur_host_name $cur_fqdn_name" >> /etc/hosts
+### Create hosts file and update /etc/hosts
+nodes_details=$(cat ip_mac.txt | grep -v "#")
+for nodes_params in $nodes_details
+do
+  node_ip_addr=$(echo $nodes_params | cut -d',' -f2)
+  node_host_name=$(echo $nodes_params | cut -d',' -f3)
+  node_fqdn_name=$node_host_name'.'$(echo $nodes_params | cut -d',' -f4)
+  echo "$node_ip_addr $node_host_name $node_fqdn_name" >> /etc/hosts
+done
 echo "Done with inital host config"
