@@ -20,6 +20,12 @@ if [ -s kubeadm_join_cmd.sh ]
     echo "============================================"
  else
     curl -s http://master/kubeadm_join_cmd.sh > /root/ubu-k8slab/kubeadm_join_cmd.sh
+    while ! [ -s file1 ]
+      do
+         curl -s http://master/kubeadm_join_cmd.sh > /root/ubu-k8slab/kubeadm_join_cmd.sh
+         sleep 5
+         echo "Waiting to receive the kubeadm join script from master"
+      done
 fi
 chmod +x /root/ubu-k8slab/kubeadm_join_cmd.sh
 ./kubeadm_join_cmd.sh
