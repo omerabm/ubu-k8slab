@@ -1,3 +1,4 @@
+### Preparing Worker nodes ####
 hs=`hostname`
 curr_ip=$(ifconfig ens32 | grep netmask | cut -d' ' -f10)
 if [ $hs = 'master' ]
