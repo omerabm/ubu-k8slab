@@ -31,4 +31,9 @@ curr_ip=$(ifconfig ens32 | grep netmask | cut -d' ' -f10)
 # else
 #    echo "Node not master ... skipping further actions"
 #fi
-for i in {1..30}; do kubectl get pods -o wide; sleep 5; done
+for i in {1..30}
+do 
+  kubectl get pods -o wide
+  sleep 5
+done
+kubectl get nodes | grep -q "NotR" && echo "Some nodes still NotReady" || echo "All Nodes Ready .. Installation finished for cluster !!"
