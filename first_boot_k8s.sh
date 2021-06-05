@@ -7,10 +7,10 @@ ifconfig ens32 $cur_ip_addr
 route add default gw 192.168.1.1
 sleep 2
 hostnamectl set-hostname $cur_fqdn_name
-sed -i "/$cur_ip_addr/d" /etc/hosts
-sed -i "/$cur_host_name/d" /etc/hosts
-sed -i "/$cur_fqdn_name/d" /etc/hosts
+
 ### Create hosts file and update /etc/hosts
+sed -i '/master/d' /etc/hosts
+sed -i '/worker/d' /etc/hosts
 nodes_details=$(cat ip_mac.txt | grep -v "#")
 for nodes_params in $nodes_details
 do
