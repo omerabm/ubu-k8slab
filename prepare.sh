@@ -11,3 +11,6 @@ echo "Done .. initial setup"
 echo "Preparing system for node specific changes"
 ./2.prep_k8s_master.sh
 ./2/prep_k8s_workers.sh
+echo "Applied changes"
+sleep 30
+#reboot
