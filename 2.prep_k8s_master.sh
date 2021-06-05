@@ -14,16 +14,19 @@ curr_ip=$(ifconfig ens32 | grep netmask | cut -d' ' -f10)
     kubectl get pods --all-namespaces
     cat kubeadm_init.log | grep -A1 kubeadm | grep 'join\|discovery' > ./kubeadm_join_cmd.sh
     chmod +x ./kubeadm_join_cmd.sh
+    echo "============================================="
+    echo " Generated Join script "
+    cat kubeadm_join_cmd.sh
+    echo "============================================="
     
     #### ssh keygen and lighttpd install 
   #  
   #  ssh-keygen -f /root/.ssh/id_rsa -P ''
-    apt-get install lighttpd -y
     service lighttpd start
     cat /root/.ssh/id_rsa.pub > /root/.ssh/authorized_keys
     cp /root/.ssh/authorized_keys /var/www/html/authorized_keys
-    cp /root/kubeadm_join_cmd.sh /var/www/html/kubeadm_join_cmd.sh
     cp /root/ubu-k8slab/kubeadm_join_cmd.sh /var/www/html/kubeadm_join_cmd.sh
+    echo "Upload kubeadm join script to web server"
     chmod +x /var/www/html/kubeadm_join_cmd.sh
     chmod -Rf 777 /var/www/html/
     ###################################
