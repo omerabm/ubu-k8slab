@@ -1,5 +1,5 @@
 hs=`hostname`
-curr_ip=$(ifconfig ens32 | grep netmask | cut -d' ' -f10)
+curr_ip=$(ifconfig ens37 | grep netmask | cut -d' ' -f10)
 #if [ $hs = 'master' ]
 # then
     echo "Current node is master ... Performing master node-specific actions"
