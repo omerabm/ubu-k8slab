@@ -1,0 +1,8 @@
+# This is the network config written by 'subiquity'
+network:
+  ethernets:
+    ens33:
+      dhcp4: true
+    ens37:
+      addresses: [192.168.100.109/24]
+  version: 2
