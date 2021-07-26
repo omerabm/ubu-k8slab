@@ -1,4 +1,5 @@
-cur_mac_addr=$(ifconfig ens32 | grep ether | cut -d' ' -f10)
+cp -f etc/netplan/00-installer-config.yaml /etc/netplan/00-installer-config.yaml
+cur_mac_addr=$(ifconfig ens37 | grep ether | cut -d' ' -f10)
 cur_ip_addr=$(cat ip_mac.txt | grep $cur_mac_addr | cut -d',' -f2)
 cur_host_name=$(cat ip_mac.txt | grep $cur_mac_addr | cut -d',' -f3)
 cur_fqdn_name=$cur_host_name'.'$(cat ip_mac.txt | grep $cur_mac_addr | cut -d',' -f4)
